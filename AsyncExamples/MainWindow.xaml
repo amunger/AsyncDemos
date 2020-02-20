@@ -1,0 +1,43 @@
+﻿<Window
+    x:Class="AsyncExamples.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AsyncExamples"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Grid>
+        <Button
+            Margin="126,10,592.333,365.667"
+            Click="Delay_Click"
+            Content="Delay" />
+        <Button
+            Width="75"
+            Height="35"
+            Margin="126,129,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="Button_Click"
+            Content="Click Me" />
+        <TextBlock
+            Name="Count"
+            Width="57"
+            Height="23"
+            Margin="364,139,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="0"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Name="NumFiles"
+            Margin="221,139,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Times clicked:"
+            TextWrapping="Wrap" />
+
+    </Grid>
+</Window>
