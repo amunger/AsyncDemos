@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,7 +9,7 @@ namespace ConsoleWorkers
     {
         static void Main(string[] args)
         {
-            ThreadPool.SetMaxThreads(11, 10);
+            ThreadPool.SetMaxThreads(10, 10);
             
             StartWorkers();
             
@@ -44,16 +39,21 @@ namespace ConsoleWorkers
             var tasks = new Task[count];
             for (int i = 0; i < count; i++)
             {
-                tasks[i] = Task.Run(TestConnection);
+                tasks[i] = Task.Run(DoWork);
+                //tasks[i] = DoWorkAsync();
             }
             return tasks;
         }
 
-        public static void TestConnection()
+        public static void DoWork()
         {
-            //WebRequest request = WebRequest.Create("https://google.com");
-            //WebResponse response = request.GetResponse();
-            Task.Delay(1000).Wait();
+            //Thread.Sleep(10);
+            DoWorkAsync().Wait();
+        }
+
+        public static async Task DoWorkAsync()
+        {
+            await Task.Delay(10);
         }
     }
 }

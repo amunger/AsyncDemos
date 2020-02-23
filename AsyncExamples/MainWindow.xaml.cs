@@ -14,6 +14,8 @@ namespace AsyncExamples
         public MainWindow()
         {
             InitializeComponent();
+            AppDomain.CurrentDomain.UnhandledException += 
+                (_, args) => { MessageBox.Show($"Exception was unhandled: {args.ExceptionObject.ToString()}"); };
         }
 
         private void Delay_Click(object sender, RoutedEventArgs e)
@@ -37,6 +39,11 @@ namespace AsyncExamples
         {
             var count = int.Parse(Count.Text) + 1;
             Count.Text = count.ToString();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            throw new InvalidOperationException();
         }
     }
 }

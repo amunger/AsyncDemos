@@ -38,6 +38,7 @@
             VerticalAlignment="Top"
             Text="Times clicked:"
             TextWrapping="Wrap" />
+        <Button Content="Broken" HorizontalAlignment="Left" Margin="126,248,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
