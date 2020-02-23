@@ -14,25 +14,25 @@ namespace AsyncExamples
         public MainWindow()
         {
             InitializeComponent();
-            AppDomain.CurrentDomain.UnhandledException += 
-                (_, args) => { MessageBox.Show($"Exception was unhandled: {args.ExceptionObject.ToString()}"); };
+            //AppDomain.CurrentDomain.UnhandledException += (_, args) => { MessageBox.Show($"Exception was unhandled: {args.ExceptionObject.ToString()}"); };
         }
 
         private void Delay_Click(object sender, RoutedEventArgs e)
         {
-            SyncOverAsync(4000);
+            Label1.Content = "waiting";
+            Delay(4000);
+            Label1.Content = "finished";
         }
 
-        private void SyncOverAsync(int milliseconds)
+        private void Delay(int milliseconds)
         {
-            // not going all the way with async
-            DelayAsync(milliseconds).Wait();
+            Thread.Sleep(milliseconds);
         }
 
         private async Task DelayAsync(int milliseconds)
         {
-            //await Task.Delay(milliseconds);
-            await Task.Delay(milliseconds).ConfigureAwait(false);
+            await Task.Delay(milliseconds);
+            //await Task.Delay(milliseconds).ConfigureAwait(false);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

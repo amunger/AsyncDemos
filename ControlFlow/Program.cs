@@ -13,6 +13,10 @@ namespace ControlFlow
         {
             CallAnAsyncMethod();
             Console.ReadLine();
+
+            Console.WriteLine();
+            CallAnAsyncMethod();
+            Console.ReadLine();
         }
 
         public static void CallAnAsyncMethod()
@@ -20,6 +24,7 @@ namespace ControlFlow
             Console.WriteLine("Creating task");
             Task task = WorkAsync();
             Console.WriteLine("Task created");
+            // do other stuff
             task.Wait();
             Console.WriteLine("Task Complete");
         }
@@ -27,7 +32,19 @@ namespace ControlFlow
         public static async Task WorkAsync()
         {
             Console.WriteLine("begin async method");
-            await Task.Delay(500);
+            await AsyncOperation();
+            Console.WriteLine("finished async method");
+            Thread.Sleep(500);
+            Console.WriteLine("finished sync work");
         }
+
+        private static async Task AsyncOperation()
+        {
+            if (!done)
+                await Task.Delay(500);
+            done = true;
+        }
+
+        private static bool done;
     }
 }

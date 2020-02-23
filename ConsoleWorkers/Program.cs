@@ -40,20 +40,20 @@ namespace ConsoleWorkers
             for (int i = 0; i < count; i++)
             {
                 tasks[i] = Task.Run(DoWork);
-                //tasks[i] = DoWorkAsync();
+                //tasks[i] = DoWorkAsync(); 
             }
             return tasks;
         }
 
         public static void DoWork()
         {
-            //Thread.Sleep(10);
-            DoWorkAsync().Wait();
+            Thread.Sleep(10);  
+            //DoWorkAsync().Wait(); 
         }
 
         public static async Task DoWorkAsync()
         {
             await Task.Delay(10);
-        }
+        }        
     }
 }
