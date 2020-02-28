@@ -9,7 +9,7 @@ namespace ConsoleWorkers
     {
         static void Main(string[] args)
         {
-            ThreadPool.SetMaxThreads(10, 10);
+            ThreadPool.SetMaxThreads(5, 8);
             
             StartWorkers();
             
@@ -39,8 +39,9 @@ namespace ConsoleWorkers
             var tasks = new Task[count];
             for (int i = 0; i < count; i++)
             {
-                tasks[i] = Task.Run(DoWork);
+                //tasks[i] = Task.Run(DoWork);
                 //tasks[i] = DoWorkAsync(); 
+                //tasks[i] = Task.Factory.StartNew(DoWork, TaskCreationOptions.LongRunning);
             }
             return tasks;
         }
@@ -54,6 +55,7 @@ namespace ConsoleWorkers
         public static async Task DoWorkAsync()
         {
             await Task.Delay(10);
-        }        
+        }
+       
     }
 }

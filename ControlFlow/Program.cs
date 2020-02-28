@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,20 +9,31 @@ namespace ControlFlow
     {
         static void Main(string[] args)
         {
-            CallAnAsyncMethod();
+            TimeAsyncWork();
             Console.ReadLine();
 
             Console.WriteLine();
-            CallAnAsyncMethod();
+            TimeAsyncWork();
             Console.ReadLine();
         }
 
-        public static void CallAnAsyncMethod()
+        public static void TimeAsyncWork()
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            DoAsyncAndSyncWork();
+
+            stopwatch.Stop();
+            Console.WriteLine($"Finished in {stopwatch.ElapsedMilliseconds} ms");
+        }
+
+        private static void DoAsyncAndSyncWork()
         {
             Console.WriteLine("Creating task");
             Task task = WorkAsync();
-            Console.WriteLine("Task created");
-            // do other stuff
+            Console.WriteLine("Doing other work while Task is running");
+            Thread.Sleep(1000);
             task.Wait();
             Console.WriteLine("Task Complete");
         }
@@ -35,7 +44,7 @@ namespace ControlFlow
             await AsyncOperation();
             Console.WriteLine("finished async method");
             Thread.Sleep(500);
-            Console.WriteLine("finished sync work");
+            Console.WriteLine("finished post-async processing");
         }
 
         private static async Task AsyncOperation()

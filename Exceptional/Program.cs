@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Exceptional
@@ -15,7 +12,7 @@ namespace Exceptional
                 var worker = new Worker();
                 worker.DoWork();
                 //worker.DoWorkAsync().Wait();
-                //worker.DoWorkAsync();
+                //_ = worker.DoWorkAsync();
 
                 //worker.workEvent += worker.WorkEvent_Handler;
                 //worker.TriggerEvent();

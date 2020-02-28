@@ -12,11 +12,10 @@ namespace Performance
         static void Main(string[] args)
         {
             //ThreadPool.SetMaxThreads(20, 20);
-            Worker worker = new ParallelWorker(2000);
+            Worker worker = new Worker(10);
 
             //worker.SyncMethod(0);
             //worker.AsyncMethod(0).Wait();
-            
             
             worker.CallAsyncMethods().Wait();
             worker.CallSyncMethods();
@@ -77,6 +76,7 @@ namespace Performance
                 Thread.Sleep(10);
                 //filestream.Seek(0, SeekOrigin.End);
                 //filestream.Write(someBytes, 0, someBytes.Length);
+                //Console.WriteLine($"{jobId}:{Thread.CurrentThread.ManagedThreadId}");
             }
         }
 
@@ -84,9 +84,11 @@ namespace Performance
         {
             using (FileStream filestream = File.Open(asyncFileNames[jobId], FileMode.OpenOrCreate))
             {
+                //Console.WriteLine($"{jobId}:{Thread.CurrentThread.ManagedThreadId}");
                 await Task.Delay(10);
                 //filestream.Seek(0, SeekOrigin.End);
                 //await filestream.WriteAsync(someBytes, 0, someBytes.Length);
+                //Console.WriteLine($"{jobId}:{Thread.CurrentThread.ManagedThreadId}");
             }
         }
     }
